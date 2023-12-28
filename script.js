@@ -43,14 +43,19 @@ let arrayOfPossibleAnswers = [
     },
     {
         message: "who are you",
-        response: "I am chatbot created By Lochan "
+        response: "I am chatbot created by Lochan "
     },
     {
         message: "what can you do",
-        response: "I can assist you with "
+        response: "I can record audio! to test click on the mic "
     },
     {
-
+        message: "record an audio",
+        response: "sure! click on the mic and start recording"
+    },
+    {
+        message: "record audio",
+        response: "sure! click on the mic and start recording"
     }
 
 ]
@@ -78,42 +83,37 @@ const sendMsg = (userMsg) => {
 function initialBotResponse() {
     const messgeBox = document.createElement('div')
     messgeBox.id = 'botMessageBox';
-    messgeBox.innerHTML = "<h1>Welcome to the chatbot! How can I help you? </h1>"
+    messgeBox.innerHTML = "<h1> Hello! I'm your friendly chatbot. How can I assist you today? </h1>"
     chatBox.appendChild(messgeBox)
 
 }
-
-
 window.addEventListener('load', initialBotResponse);
 
 
-
 const chatBotResponse = (userMsg) => {
+    let botMessage = "I'm sorry, I didn't understand that.";
 
-    let botMessege = ""
-    if (userMsg.length > 4) {
-        let result = arrayOfPossibleAnswers.filter(val => val.message.includes(userMsg.toLowerCase()));
-        if (result.length > 0) {
-            let response = result[0].response;
-            botMessege = response;
-        }
+    // Check for exact matches in arrayOfPossibleAnswers
+    const result = arrayOfPossibleAnswers.find(item =>
+        item.message && typeof item.message === 'string' &&
+        item.message.toLowerCase() === userMsg.toLowerCase()
+    );
+
+    if (result) {
+        botMessage = result.response;
     }
 
-    const messgeBox = document.createElement('div')
-    messgeBox.id = 'botMessageBox';
-
-
-    messgeBox.innerHTML = "<h1>" + botMessege + "</h1>"
-
-
+    const messageBox = document.createElement('div');
+    messageBox.id = 'botMessageBox';
+    messageBox.innerHTML = "<h1>" + botMessage + "</h1>";
 
     setTimeout(() => {
-        chatBox.appendChild(messgeBox)
-
+        chatBox.appendChild(messageBox);
     }, 2000);
 
     chatBox.scrollTop = chatBox.scrollHeight;
 }
+
 
 
 sendBtn.addEventListener('click', (e) => {
@@ -191,6 +191,7 @@ async function toggleRecording() {
                 messgeBox.id = 'botMessageBox'
                 messgeBox.appendChild(userAudio)
                 chatBox.appendChild(messgeBox);
+                chatBox.scrollTop = chatBox.scrollHeight;
             }, 2000);
 
 
@@ -198,7 +199,6 @@ async function toggleRecording() {
         };
 
         mediaRecorder.start();
-        console.log(mediaRecorder.state)
     }
 
     if (mediaRecorder.state === 'recording') {
