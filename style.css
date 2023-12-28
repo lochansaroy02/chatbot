@@ -202,19 +202,24 @@ body {
   font-size: medium;
 }
 
-@media only screen and (max-width: 700px) {
-  body {
-    background-color: lightblue;
+@media only screen and (max-width: 1200px)  {
+  .msgBox {
+    margin-left: 0px;
+    width: 100%;
   }
 
   .msgBox input {
-    width: 50%;
+ 
+    width: 70%;
+  }
+  .hero{
+    padding-left: 10px;
   }
 
   .btnGroup {
     width: 40%;
-    gap: 5px;
-    justify-content: space-between;
+    
+    
   }
 }
 
