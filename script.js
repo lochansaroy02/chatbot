@@ -45,7 +45,11 @@ let arrayOfPossibleAnswers = [
         response: "Hii"
     },
     {
-        message: "how are you?",
+        message: "hii",
+        response: "Hello"
+    },
+    {
+        message: "how are you",
         response: "I am good"
     },
     {
@@ -121,9 +125,10 @@ const chatBotResponse = (userMsg) => {
     const messageBox = document.createElement('div');
     messageBox.id = 'botMessageBox';
     messageBox.innerHTML = "<h1>" + botMessage + "</h1>";
-
+    
     setTimeout(() => {
         chatBox.appendChild(messageBox);
+        chatBox.scrollTop = chatBox.scrollHeight;
     }, 2000);
 
     chatBox.scrollTop = chatBox.scrollHeight;
