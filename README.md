@@ -18,7 +18,7 @@ The Audio Chatbot project is a simple application that leverages JavaScript to e
 
 To run the project locally, follow these steps:
 
-1. Clone the repository: `git clone <repository-url>`
+1. Clone the repository: `git clone https://github.com/lochansaroy02/chatbot`
 2. Open `index.html` in your preferred web browser.
 
 ## Usage
