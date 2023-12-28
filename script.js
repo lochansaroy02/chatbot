@@ -1,3 +1,6 @@
+
+// collecting dom
+
 const sendBtn = document.getElementById('button');
 const inputBox = document.getElementById('inputBox');
 const chatBox = document.getElementById('chatBox');
@@ -13,10 +16,12 @@ let recordedChunks = [];
 
 
 
+
+
 const userData = { message: "" }
 
 
-
+//check if bot is online or not 
 const statusCheck = () => {
     var status = true;
 
@@ -31,6 +36,8 @@ const statusCheck = () => {
         : console.log("offline")
 }
 statusCheck();
+
+// sample database 
 
 let arrayOfPossibleAnswers = [
     {
@@ -60,6 +67,21 @@ let arrayOfPossibleAnswers = [
 
 ]
 
+
+//welcome messege logic 
+
+function initialBotResponse() {
+    const messgeBox = document.createElement('div')
+    messgeBox.id = 'botMessageBox';
+    messgeBox.innerHTML = "<h1> Hello! I'm your friendly chatbot. How can I assist you today? </h1>"
+    chatBox.appendChild(messgeBox)
+
+}
+window.addEventListener('load', initialBotResponse);
+
+
+//user messege box 
+
 const sendMsg = (userMsg) => {
     const msgDiv = document.createElement('div')
     const messgeBox = document.createElement('div')
@@ -80,20 +102,13 @@ const sendMsg = (userMsg) => {
 
 
 
-function initialBotResponse() {
-    const messgeBox = document.createElement('div')
-    messgeBox.id = 'botMessageBox';
-    messgeBox.innerHTML = "<h1> Hello! I'm your friendly chatbot. How can I assist you today? </h1>"
-    chatBox.appendChild(messgeBox)
 
-}
-window.addEventListener('load', initialBotResponse);
-
+//chat messege box
 
 const chatBotResponse = (userMsg) => {
     let botMessage = "I'm sorry, I didn't understand that.";
 
-    // Check for exact matches in arrayOfPossibleAnswers
+
     const result = arrayOfPossibleAnswers.find(item =>
         item.message && typeof item.message === 'string' &&
         item.message.toLowerCase() === userMsg.toLowerCase()
@@ -115,7 +130,7 @@ const chatBotResponse = (userMsg) => {
 }
 
 
-
+//  event fire when user click the send button 
 sendBtn.addEventListener('click', (e) => {
 
     const text = inputBox.value;
@@ -133,7 +148,7 @@ sendBtn.addEventListener('click', (e) => {
     }
 })
 
-
+//event fire when user press enter key 
 inputBox.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
 
@@ -151,6 +166,7 @@ inputBox.addEventListener('keypress', (event) => {
 });
 
 
+// recording audio logic 
 
 recordButton.addEventListener('click', toggleRecording);
 
